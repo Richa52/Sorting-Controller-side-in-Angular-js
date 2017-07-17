@@ -1,0 +1,66 @@
+ scope.docketlist = scope.docketlist.sort(function (a, b) {
+                    return new Date(a.submissionDate).getTime() - new Date(b.submissionDate).getTime()
+                });
+
+/*
+This sort method would sort the array as its not an object array . JSON array is an array of objects . Hence  sort method cannot be used directly to sort the array .
+
+array1=["a","z","c","w","j"];
+alert(array1.sort( ));*/
+
+
+var array=[
+  {
+    "EmployeeName":"6/28/2017",
+    "Experience": "12",
+      "Technology":"6/28/2017"
+  },
+  {
+    "EmployeeName":"6/22/2017",
+    "Experience": "9",
+     "Technology":"6/22/2017"
+  },
+  {
+    "EmployeeName": "8/19/2016",
+    "Experience": "3",
+      "Technology":"8/19/2016"
+  },
+  {
+    "EmployeeName": "8/15/2016",
+    "Experience": "7",
+     "Technology":"8/15/2016"
+  },
+  {
+    "EmployeeName": "4/24/2017",
+    "Experience": "6",
+    "Technology":"4/24/2017"
+  }
+];
+
+function GetSortOrder(prop,type){
+   return function(a,b){
+      if(type){
+           return new Date(b[prop]).getTime() - new Date(a[prop]).getTime()
+      }else{
+           return new Date(a[prop]).getTime() - new Date(b[prop]).getTime()
+      }
+   }
+}
+
+array.sort( GetSortOrder("EmployeeName",true) );
+document.write("Sorted Employee Names : <br>");
+
+for (var item in array) {
+ document.write("<br>"+array[item].EmployeeName);
+}
+
+array.sort( GetSortOrder("Technology",false) );
+
+document.write("<br><br> Sorted Technology Names : <br>");
+
+for (var item in array) {
+ document.write("<br>"+array[item].Technology);
+}
+
+
+
